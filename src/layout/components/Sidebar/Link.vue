@@ -1,3 +1,11 @@
+<!--
+ * @Author: xujian
+ * @Date: 2020-11-17 15:05:53
+ * @LastEditors: xujian
+ * @LastEditTime: 2020-12-19 18:33:59
+ * @Description:
+ * @FilePath: \vue-element-admin\src\layout\components\Sidebar\Link.vue
+-->
 <template>
   <component :is="type" v-bind="linkProps(to)">
     <slot />

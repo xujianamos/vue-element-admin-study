@@ -1,6 +1,16 @@
+<!--
+ * @Author: xujian
+ * @Date: 2020-11-17 15:05:53
+ * @LastEditors: xujian
+ * @LastEditTime: 2020-12-19 17:32:01
+ * @Description:
+ * @FilePath: \vue-element-admin\src\layout\components\Sidebar\index.vue
+-->
 <template>
-  <div :class="{'has-logo':showLogo}">
+  <div :class="{ 'has-logo': showLogo }">
+    <!-- logo -->
     <logo v-if="showLogo" :collapse="isCollapse" />
+    <!-- 菜单栏的滚动区域 -->
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
@@ -12,7 +22,12 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item v-for="route in permission_routes" :key="route.path" :item="route" :base-path="route.path" />
+        <sidebar-item
+          v-for="route in permission_routes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
+        />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -27,10 +42,8 @@ import variables from '@/styles/variables.scss'
 export default {
   components: { SidebarItem, Logo },
   computed: {
-    ...mapGetters([
-      'permission_routes',
-      'sidebar'
-    ]),
+    ...mapGetters(['permission_routes', 'sidebar']),
+    // 默认激活的菜单
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
@@ -40,12 +53,15 @@ export default {
       }
       return path
     },
+    // 是否显示菜单栏上方的logo
     showLogo() {
       return this.$store.state.settings.sidebarLogo
     },
+    // 样式变量
     variables() {
       return variables
     },
+    // 菜单是否折叠
     isCollapse() {
       return !this.sidebar.opened
     }
