@@ -2,7 +2,7 @@
  * @Author: xujian
  * @Date: 2020-11-17 15:05:53
  * @LastEditors: xujian
- * @LastEditTime: 2020-12-19 17:32:01
+ * @LastEditTime: 2020-12-31 17:33:51
  * @Description:
  * @FilePath: \vue-element-admin\src\layout\components\Sidebar\index.vue
 -->
@@ -41,13 +41,16 @@ import variables from '@/styles/variables.scss'
 
 export default {
   components: { SidebarItem, Logo },
+  created() {
+    console.log(this.permission_routes)
+  },
   computed: {
     ...mapGetters(['permission_routes', 'sidebar']),
     // 默认激活的菜单
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
-      // if set path, the sidebar will highlight the path you set
+      // 如果设置路径，工具条将突出显示您设置的路径
       if (meta.activeMenu) {
         return meta.activeMenu
       }
